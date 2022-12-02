@@ -389,6 +389,20 @@ func GetLink(links []*types.Link, rel string) (*types.Link, error) {
 	return nil, errNoLink
 }
 
+// GetLinkFromSdc returns a link created basis on relation
+func GetLinkFromSdc(sdc *types.Sdc, rel string) (*types.Link, error) {
+	returnLink := types.Link{}
+	returnLink.Rel = rel
+	switch rel {
+	case "/api/Sdc/relationship/Statistics":
+		returnLink.HREF = fmt.Sprintf("/api/instances/Sdc::%v/relationships/Statistics", sdc.ID)
+	case "/api/Sdc/relationship/Volume":
+		returnLink.HREF = fmt.Sprintf("/api/instances/Sdc::%v/relationships/Volume", sdc.ID)
+	}
+
+	return &returnLink, nil
+}
+
 func withFields(fields map[string]interface{}, message string) error {
 	return withFieldsE(fields, message, nil)
 }

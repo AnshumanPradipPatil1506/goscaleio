@@ -116,7 +116,7 @@ func (s *System) FindSdc(field, value string) (*Sdc, error) {
 func (sdc *Sdc) GetStatistics() (*types.SdcStatistics, error) {
 	defer TimeSpent("GetStatistics", time.Now())
 
-	link, err := GetLink(sdc.Sdc.Links, "/api/Sdc/relationship/Statistics")
+	link, err := GetLinkFromSdc(sdc.Sdc, "/api/Sdc/relationship/Statistics")
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +135,7 @@ func (sdc *Sdc) GetStatistics() (*types.SdcStatistics, error) {
 func (sdc *Sdc) GetVolume() ([]*types.Volume, error) {
 	defer TimeSpent("GetVolume", time.Now())
 
-	link, err := GetLink(sdc.Sdc.Links, "/api/Sdc/relationship/Volume")
+	link, err := GetLinkFromSdc(sdc.Sdc, "/api/Sdc/relationship/Volume")
 	if err != nil {
 		return nil, err
 	}

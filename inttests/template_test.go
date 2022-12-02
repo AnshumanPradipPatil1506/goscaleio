@@ -61,8 +61,6 @@ func createTemplateFunction(tplstr string) (*siotypes.DefaultTemplate, error) {
 		return &resultTemplate, err
 	}
 	json.Unmarshal(b, &resultTemplate)
-	fmt.Println("\nTemplate Created- ID ", resultTemplate.ID)
-	fmt.Println("\nTemplate Created- TemplateName ", resultTemplate.TemplateName)
 	return &resultTemplate, err
 }
 
@@ -84,8 +82,6 @@ func getTemplateFunction(nm string) (*siotypes.DefaultTemplate, error) {
 	}
 	json.Unmarshal(b, &resultTemplatesGet)
 	resultTemplate = resultTemplatesGet[0]
-	fmt.Println("\nGET Template -ID ", resultTemplate.ID)
-	fmt.Println("\nGET Template -Name ", resultTemplate.TemplateName)
 	return &resultTemplate, nil
 }
 
@@ -100,7 +96,6 @@ func deleteTemplateFunction(tplid string) (int, error) {
 		return statuscode, err
 	}
 	statuscode = responseDelete.(*http.Response).StatusCode
-	fmt.Println("\nDeleted Template - response code ", statuscode)
 
 	return statuscode, err
 }
@@ -117,8 +112,6 @@ func updateTemplateFunction(template siotypes.DefaultTemplate) (int, error) {
 	}
 	statuscode = response.(*http.Response).StatusCode
 
-	fmt.Println("\nUpdated Template - Description ", template.TemplateDescription)
-	fmt.Println("\nUpdated Template - response code ", statuscode)
 	return statuscode, err
 }
 

@@ -24,6 +24,9 @@ func TestGetAllUsers(t *testing.T) {
 	assert.NotNil(t, system)
 
 	allUsers, err := system.GetUser()
+	if err != nil && err.Error() == "Deprecated message. Please contact Customer Support." {
+		t.Skipf("warning :- Deprecated message. Please contact Customer Support.")
+	}
 	assert.Nil(t, err)
 	assert.NotZero(t, len(allUsers))
 }
